@@ -115,4 +115,4 @@
     gen_log = logging.getLogger("tornado.general")
 
     ```
-  * 根据1和2的解析，不难理解`access_log`/`gen_log`/`app_log`都没有定义日志级别和注册处理器，所以它们默认会根据2中的解释使用`root logger`的日志级别和处理器。
+  * 根据1和2的解析，不难理解`access_log`/`gen_log`/`app_log`都没有定义日志级别和注册处理器，所以它们默认会根据2中的解释使用`root logger`的日志级别和处理器
