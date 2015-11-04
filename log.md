@@ -46,7 +46,7 @@
     ```
 
 3. `root logger`
-  * 通过`tornado.log.enable_pretty_logging`进行配置
+  * 通过`tornado.log.enable_pretty_logging`进行配置，包括日志级别(`log level`)和处理(`handler`)。
   ```
   def enable_pretty_logging(options=None, logger=None):
     """Turns on formatted logging output as configured.
@@ -89,7 +89,7 @@
         logger.addHandler(channel)
   ```
 
-3. `access_log`/`gen_log`/`app_log`
+4. `access_log`/`gen_log`/`app_log`
   * 在`tornado.log`模块级别进行定义
     ```
     # Logger objects for internal tornado use
@@ -98,4 +98,4 @@
     gen_log = logging.getLogger("tornado.general")
 
     ```
-  * 根据1和2的解析，不难理解`access_log`/`gen_log`/`app_log`都没有定义日志级别和注册处理器，所以它们默认会根据2中的解释使用`root logger`的日志级别和处理器
+  * 根据1和2的解析，不难理解`access_log`/`gen_log`/`app_log`都没有定义日志级别和注册处理器，所以它们默认会根据2中的解释使用`root logger`的日志级别和处理器。
