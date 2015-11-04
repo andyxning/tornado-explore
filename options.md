@@ -13,4 +13,8 @@
 
 3. 从tornado 4.3开始，默认tornado支持的参数名中dash符号"-"以及underscore符号"_"是可以互换的，也就是说配置了"--long-option=value"，可以在程序中使用"long_option"的格式引用到"long-option"选项的值。```tornado.options```模块的注释解释dash符号主要用在命令行上，但是underscore符号主要用在配置文件中。
 
+4. 在命令行中设置`boolean`类型的参数为`True`或`False`。
+    * 指定为`False`的方式：`--boolean-option=False`|`--boolean-option=0`|`--boolean-option=f`
+    * 指定为`True`的方式：`--boolean-option`|`--boolean-option=[除了"false", "0", "f"（不去分大小写）之外的所有组合]`
+
 ## 配置文件
