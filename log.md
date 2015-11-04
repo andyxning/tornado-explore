@@ -1,22 +1,39 @@
 # log
 
+## Description
+处理tronado框架中的日志记录。
 
-
-
-## 
+ 
+## Notices
 1. `tornado.log`模块配置的是Python的`logging`模块中的`root logger`。`tornado.log`模块的log相关参数设置都是针对`root logger`。Tornado框架中的各个自定义的`logger`最后的日志记录请求都会被委托给`root logger`，包括日志记录级别(`log level`)和相应的日志处理器（`handler`)
 
 2. Python中`logging`[模块的原理](https://docs.python.org/2/library/logging.html#logging.Logger.setLevel)。
-  * Python中的`logging`模块中的`logger`是树形结构，根节点是`root logger`，子节点是自定义的`logger`。
+  * Python中的`logging`模块中的`logger`是树形结构，根节点是`root logger`，子节点是自定义的`logger`。每个`logger`的`parent`属性指示父`logger`。`root logger`的`parent`属性是`None`。
   * 默认，`root logger`在导入`logging`模块的时候就会被创建，`root logger`的日志级别是`WARNING`。
   * 当一个`logger`被创建的时候，日志级别默认是`NOTSET`，这会导致：如果接收请求的`logger`是`root logger`则所有级别的日志信息都被记录；否则会把相应的日志记录请求委托给父`logger`。
     * 将日志记录请求委托给父`logger`的意思：
       * 如果接收请求的`logger`日志级别是`NOTSET`,接收请求的`logger`的所有祖先`logger`会被逆序遍历直到一个祖先`logger`的日志级别不是`NOTSET`或者遍历到`root logger`。
       * 如果一个日志级别不是`NOTSET`的祖先`logger`被遍历到，则这个祖先`logger`的日志级别会被作为当前`logger`的有效日志级别，并根据这个有效日志级别来确定是否能处理日志记录请求。
       * 如果最后`root logger`被遍历到，并且`root logger`的日志级别是`NOTSET`，则所有的日志请求都会被满足；否则，将`root logger`的日志级别作为接收请求的`logger`的有效日志级别。
+      * `logging.Logger.getEffectiveLevel`
+      ```
+      def getEffectiveLevel(self):
+        """
+        Get the effective level for this logger.
 
-  * 处理器(`handler`)
-    * 在处理日志记录请求的时候，会调用`logging.Logger.Callhandlers`。该函数的主要功能是在接收请求的`logger`和祖先`logger`中进行遍历，直到一个祖先`logger`的`propagate`属性变成`False`（`root logger`的`propagate`属性为`False`)。
+        Loop through this logger and its parents in the logger hierarchy,
+        looking for a non-zero logging level. Return the first one found.
+        """
+        logger = self
+        while logger:
+            if logger.level:
+                return logger.level
+            logger = logger.parent
+        return NOTSET
+      ```
+
+  * 处理器(`handler`
+    * 在处理日志记录请求的时候，会调用`logging.Logger.Callhandlers`。该函数的主要功能是在接收请求的`logger`和祖先`logger`中进行遍历，直到一个祖先`logger`的`propagate`属性变成`False`或者到达`root logger`（`root logger`的`parent`属性为`None`)。
     ```
     def callHandlers(self, record):
         """
