@@ -1,8 +1,11 @@
 # options
 
+## Desc
 ```tornado.options```模块负责Tornado参数的解析，包括命令行参数和配置文件参数解析。
 
-## 命令行
+
+## Notices
+### 命令行
 根据```tornado.options.parse_command_line```函数的实现，命令参数的解析具有以下规范：
 1. 命令行参数只支持长选项，即`--long-option value`或`--long-option=vlaue`([long options](http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html))，并且长选项只支持`--long-option=value`的方式，不支持`--long-option value`的方式。  
 
@@ -17,4 +20,4 @@
     * 指定为`False`的方式：`--boolean-option=False`|`--boolean-option=0`|`--boolean-option=f`
     * 指定为`True`的方式：`--boolean-option`|`--boolean-option=[除了"false", "0", "f"（不去分大小写）之外的所有组合]`
 
-## 配置文件
+### 配置文件
