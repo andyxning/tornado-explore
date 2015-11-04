@@ -7,6 +7,6 @@ Tornado Explore
 * feedback
   * Weibo：[@橙汁梨](http://weibo.com/1649286533/profile?topnav=1&wvr=6)
   * Wechat: 橙汁梨
-  * E-mail：[andy.xning](mailto:andy.xning@gmail.com)，邮件的主题标明：gitbook-tronado-explore
+  * E-mail：[andy.xning](mailto:andy.xning@gmail.com)，邮件的主题标明：gitbook-tornado-explore
 
 
