@@ -4,5 +4,5 @@
 * [options](options.md)
 * [httpclient](httpclient.md)
 * process
-* log
+* [log](log.md)
 
