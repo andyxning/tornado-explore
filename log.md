@@ -32,7 +32,7 @@
         return NOTSET
       ```
 
-  * 处理器(`handler`
+  * 处理器(`handler`)
     * 在处理日志记录请求的时候，会调用`logging.Logger.Callhandlers`。该函数的主要功能是在接收请求的`logger`和祖先`logger`中进行遍历，直到一个祖先`logger`的`propagate`属性变成`False`或者到达`root logger`（`root logger`的`parent`属性为`None`)。
     ```
     def callHandlers(self, record):
