@@ -11,3 +11,7 @@ Tornado Explore
   * E-mail：[andy.xning](mailto:andy.xning@gmail.com)，邮件的主题标明：gitbook-tornado-explore
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/andyxning/tornado-explore/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
